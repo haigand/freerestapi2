@@ -3,12 +3,12 @@ __path = process.cwd()
 var express = require('express');
 var db = require(__path + '/database/db');
 try {
-var zahirr = db.get("zahirr");
+var alpin = db.get("alpin");
 } catch (e) {
 	console.log('')
 }
 
-var creatorList = ['@alpin','@alpin','@alpin','@alpin', '@alpin','@alpin','@alpin'];
+var creatorList = ['@alpin'];
 var creator = creatorList[Math.floor(Math.random() * creatorList.length)];
 
 
@@ -18,13 +18,10 @@ var secure = require('ssl-express-www');
 var cors = require('cors');
 var scrapeYt = require("scrape-yt");
 var fetch = require('node-fetch');
-var axios = require('axios');
 var cheerio = require('cheerio');
 var request = require('request');
 var TikTokScraper = require('tiktok-scraper');
 var router  = express.Router();
-var YoutubeAPI = require('simple-youtube-api')
-var youtubs = new YoutubeAPI('AIzaSyB2DRtHACCeIzgduQzzITkS4rnpz_sA2BA'); 
 
 var { color, bgcolor } = require(__path + '/lib/color.js');
 var { fetchJson } = require(__path + '/lib/fetcher.js')
@@ -34,10 +31,7 @@ var {
 	Vokal,
 	Base,
 	Searchnabi,
-        Gempa,
-        IG,
-	ytplay,
-	ytdldown
+    Gempa
 } = require('./../lib');
 var cookie = "HSID=A7EDzLn3kae2B1Njb;SSID=AheuwUjMojTWvA5GN;APISID=cgfXh13rQbb4zbLP/AlvlPJ2xBJBsykmS_;SAPISID=m82rJG4AC9nxQ5uG/A1FotfA_gi9pvo91C;__Secure-3PAPISID=m82rJG4AC9nxQ5uG/A1FotfA_gi9pvo91C;VISITOR_INFO1_LIVE=RgZLnZtCoPU;LOGIN_INFO=AFmmF2swRQIhAOXIXsKVou2azuz-kTsCKpbM9szRExAMUD-OwHYiuB6eAiAyPm4Ag3O9rbma7umBK-AG1zoGqyJinh4ia03csp5Nkw:QUQ3MjNmeXJ0UHFRS3dzaTNGRmlWR2FfMDRxa2NRYTFiN3lfTEdOVTc4QUlwbUI4S2dlVngxSG10N3ZqcHZwTHBKano5SkN2dDlPSkhRMUtReE42TkhYeUVWS3kyUE1jY2I1QzA1MDZBaktwd1llWU9lOWE4NWhoZV92aDkxeE9vMTNlcG1uMU9rYjhOaDZWdno2ZzN3TXl5TVNhSjNBRnJaMExrQXpoa2xzRVUteFNWZDI5S0Fn;PREF=app=desktop&f4=4000000&al=id;SID=2wezCMTUkWN3YS1VmS_DXaEU84J0pZIQdemM8Zry-uzWm8y1njBpLTOpxSfN-EaYCRSiDg.;YSC=HCowA1fmvzo;__Secure-3PSID=2wezCMTUkWN3YS1VmS_DXaEU84J0pZIQdemM8Zry-uzWm8y1dajgWzlBh9TgKapGOwuXfA.;SIDCC=AJi4QfFK0ri9fSfMjMQ4tOJNp6vOb9emETXB_nf2S05mvr2jBlmeEvlSsQSzPMuJl_V0wcbL1r8;__Secure-3PSIDCC=AJi4QfGeWHx-c4uTpU1rXCciO1p0s2fJWU07KrkZhWyD1Tqi8LyR-kHuBwHY9mViVYu1fRh2PA";
 
@@ -47,7 +41,7 @@ loghandler = {
         creator: `${creator}`,
         code: 406,
         message: 'masukan parameter apikey',
-        getApikey: 'gak punya apikey? chat gw aja yaaa di wa.me/6289690719275 , key nya gratis kok gan, jadi santuyy ajaa'
+        getApikey: 'apikey:alpingans'
     },
     notkey: {
         status: false,
@@ -119,7 +113,7 @@ loghandler = {
         status: false,
         creator: `${creator}`,
         code: 406,
-        message: 'apikey invalid, gak punya apikey? chat gw aja yaaa di wa.me/6289690719275 , key nya gratis kok gan, jadi santuyy ajaa'
+        message: 'apikey invalid, gak punya apikey? chat gw aja yaaa di wa.me/6283898698875 , key nya gratis kok gan, jadi santuyy ajaa'
     },
     invalidlink: {
         status: false,
@@ -159,7 +153,7 @@ var len = 15
             randomlagi += arr[Math.floor(Math.random() * arr.length)];
         }
 
-        var randomTextNumber = random+randomlagi+'---------ZahirGanteng'+'ZHIRRR--GANS';
+        var randomTextNumber = random+randomlagi+'---------alpingans'+'alpinofc';
         
  
  async function cekApiKey(api) {
@@ -169,7 +163,7 @@ var len = 15
 router.get('/find', async (req, res, next) => {
     var apikey = req.query.apikey
     if (!apikey) return res.json(loghandler.notparam)
-    if (apikey != 'alpin') return res.json(loghandler.invalidKey)
+    if (apikey != 'alpingans') return res.json(loghandler.invalidKey)
 
     try {
         zahirr.find()
@@ -230,7 +224,7 @@ router.get('/addapikey', (req, res, next) => {
 
     if (!apikey) return res.json(loghandler.notparam)
     if (!(status && apikeyInput && email && nomorhp && name && age && country && exp)) return res.json(loghandler.notAddApiKey)
-    if (apikey != 'alpin') return res.json(loghandler.invalidKey)
+    if (apikey != 'alpingans') return res.json(loghandler.invalidKey)
 
     try {
         zahirr.insert({
@@ -269,7 +263,7 @@ router.get('/remove', (req, res, next) => {
 
     if (!apikey) return res.json(loghandler.notparam)
     if (!(status && apikeyInput && email && nomorhp && name && age && country && exp)) return res.json(loghandler.notAddApiKey)
-    if (apikey != 'alpin') return res.json(loghandler.invalidKey)
+    if (apikey != 'alpingans') return res.json(loghandler.invalidKey)
 
     try {
         zahirr.remove({
@@ -301,7 +295,7 @@ router.get('/tiktod', async (req, res, next) => {
 
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
      if (!url) return res.json(loghandler.noturl)
 
      TikTokScraper.getVideoMeta(url, options)
@@ -318,246 +312,12 @@ router.get('/tiktod', async (req, res, next) => {
          })
 })
 
-
-router.get('/yt/play', async (req, res, next) => {
-	var vid = [];
-	var apikeyInput = req.query.apikey,
-            search = req.query.search
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-    if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
-
-	var videos = []
-	ytplay(search).then(async (resplay) => {
-			var gasplay = resplay[0]
-			
-			ytdldown(gasplay,'multi')
-			.then(result => {
-				res.json({status:true,creator:creator,result})
-			})
-			.catch (e=>{
-				console.log('Error :', color(e,'red'))
-				res.json(loghandler.error)
-			})
-	})
-	.catch (e => {
-		console.log('Error : ', color(e,'red'))
-	})
-})
-
-
-
-router.get('/yt/search', async (req, res, next) => {
-	var apikeyInput = req.query.apikey,
-            search = req.query.search
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-    if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
-	try {
-scrapeYt.search(search, {
-    type: "video"
-}).then(videos => {
-    res.json(videos);
-})
-} catch (err) {
-    console.log('Error :', color(err, 'red'))
-    res.json(loghandler.error)
-  }
-})
-
-router.get('/yt', async (req, res, next) => {
-	var apikeyInput = req.query.apikey,
-        url = req.query.url
-
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-    if (!url) return res.json(loghandler.noturl)
-	let playlistregex = /\/playlist\?list=/;
-	let result = []
-	try {
-		if (playlistregex.test(url)){
-			ytpl(url)
-			.then(info => info.items)
-			.then(info => {
-				let video
-				for(video of info){
-					result.push({
-						title: video.title,
-						id: video.id,
-						duration: video.duration
-					})
-				}
-				res.json({
-					status:true,
-					creator: creator,
-					result,
-					message: 'jangan lupa follow ' + creator
-				})
-			})
-			.catch(e => {
-				console.log(e)
-				res.json(loghandler.error)
-			})
-		} else {
-			ytdl.getInfo(url)
-			.then(info => {
-				let duration = (info.lengthSeconds/60).toString()
-				duration = duration.substring(0, duration.indexOf('.'))+':'+Math.floor((info.lengthSeconds%60).toString())
-				const max = info.videoDetails.thumbnails.reduce((prev, current) => ((prev.height > current.height) ? prev : current));
-					result.push({
-						    id: info.videoDetails.videoId,
-                            title: info.videoDetails.title,
-                            description: info.videoDetails.description,
-                            length: info.videoDetails.lengthSeconds,
-                            view: info.videoDetails.viewCount,
-                            date: info.videoDetails.publishDate,
-                            thumbnail: max,
-                            video:info.formats
-                })
-                res.json({
-				status:true,
-				creator: creator,
-                result,
-                message: 'jangan lupa follow ' + creator
-                })
-			})
-			.catch (er => {
-				console.log(er)
-				res.json(loghandler.error)
-				})
-				}
-				} catch (e) {
-					console.log(e)
-					res.json(loghandler.error)
-					} 
-	if (url && type == 'audio') {
-		try {
-    res.header('Content-Disposition', `attachment; filename="audio-zefian.mp3"`);
-    ytdl(url, {
-      format: 'mp3',
-      filter: 'audioonly',
-      filter: 'audioonly'
-      }).pipe(res);
-
-  } catch (err) {
-    res.json(loghandler.error)
-    console.log(loghandler.error)
-  }
-		} else if (url && type == 'video'){
-			try {
-    res.header('Content-Disposition', `attachment; filename="video-zefian.mp4"`);
-    ytdl(url, {
-      format: 'mp4',
-    }).pipe(res);
-
-  } catch (err) {
-    res.json(loghandler.error)
-    console.log(loghandler.error)
-  }
-  } 
-})
-
-
-router.get('/igdown', async (req, res, next) => {
-    var apikeyInput = req.query.apikey,
-        url = req.query.url
-
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-    if (!url) return res.json(loghandler.noturl)
-
-    var str = url
-    var potong = str.split('?')
-    var graph = "?__a=1"
-    var potong2 = potong[0] + graph
-
-    fetch(encodeURI(potong2))
-        .then(response => response.json())
-        .then(data => {
-            var validasi = data["graphql"]["shortcode_media"]["__typename"];
-            if (validasi == "GraphVideo") {
-                var link = data.graphql.shortcode_media.video_url;
-                res.json({
-                    status: true,
-                    creator: `${creator}`,
-                    result: {
-                        type: "Video",
-                        url: link
-                    },
-                    message: "jangan lupa follow" + creator
-                })
-            } else if (validasi == "GraphImage") {
-                var link = data.graphql.shortcode_media.display_url;
-                res.json({
-                    status: true,
-                    creator: `${creator}`,
-                    result: {
-                        type: "Picture",
-                        url: link
-                    },
-                    message: "jangan lupa follow" + creator
-                })
-            } else {
-                res.json({
-                    status: false,
-                    creator: `${creator}`,
-                    message: "mungkin terjadi error"
-                })
-            }
-        })
-        .catch(e => {
-            console.log('Error:', color(e,'red'))
-            res.json({status:false,creator: `${creator}`, message: "gagal, pastikan url anda benar:)"})
-       })
-})
-
-router.get('/igstalk', async (req, res, next) => {
-    var apikeyInput = req.query.apikey,
-        username = req.query.username
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-    if (!username) return res.json(loghandler.notusername)
-
-    fetch(encodeURI(`https://www.instagram.com/${username}/?__a=1`))
-        .then(response => response.json())
-        .then(data => {
-             var bisnis_or = data.graphql.user.is_business_account == false ? "bukan bisnis": "ini bisnis"
-             var verif_or =  data.graphql.user.is_verified == false ? "belum verified / centang biru": "sudah verified / centang biru"
-             var response = {
-                 status: true,
-                 creator: `${creator}`,
-                 result: {
-                      username: `${data.graphql.user.username}`,
-                      name: `${data.graphql.user.full_name}`,
-                      biodata: `${data.graphql.user.biography}`,
-                      followers: `${data.graphql.user.edge_followed_by.count}`,
-                      following:`${data.graphql.user.edge_follow.count}`,
-                      verified: verif_or,
-                      business_account: bisnis_or,
-                      post: `${data.graphql.user.edge_owner_to_timeline_media.count}`,
-                      profile_picture: `${data.graphql.user.profile_pic_url}`,
-                      profile_picture_hd: `${data.graphql.user.profile_pic_url_hd}`,
-                 },
-                 message: `jangan lupa follow ${creator}`
-             }
-             res.json(response)
-        })
-})
-
-
-
-
 router.get('/tiktod/stalk', async (req, res, next) => {
     var apikeyInput = req.query.apikey,
         username = req.query.username
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
     if (!username) return res.json(loghandler.notusername)
 
 
@@ -578,12 +338,11 @@ router.get('/tiktod/stalk', async (req, res, next) => {
          })
 })
 
-
 router.get('/randomquote', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://python-api-zhirrr.herokuapp.com/api/random/quotes`))
         .then(response => response.json())
@@ -605,7 +364,7 @@ router.get('/infonpm', async (req, res, next) => {
             query = req.query.query
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
     if (!query) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter query"})
 
        fetch(encodeURI(`https://registry.npmjs.org/${query}`))
@@ -624,13 +383,51 @@ router.get('/infonpm', async (req, res, next) => {
 })
 })
 
+router.get('/jadwal-bioskop', (req, res) => {
+var apikeyInput = req.query.apikey
+
+if(!apikeyInput) return res.json(loghandler.notparam)
+if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
+const { default: Axios } = require('axios')
+const cheerio = require('cheerio')
+
+Axios.get('https://jadwalnonton.com/now-playing')
+.then(({ data }) => {
+     const $ = cheerio.load(data)
+     let title = []
+     let url = []
+     let img = []
+ 	$('div.row > div.item > div.clearfix > div.rowl > div.col-xs-6 > a').get().map((rest) => {
+         url.push($(rest).attr('href'))
+         })
+         $('div.row > div.item > div.clearfix > div.rowl > div.col-xs-6 > a > img').get().map((rest) => {
+        	title.push($(rest).attr('alt'))
+         })
+         $('div.row > div.item > div.clearfix > div.rowl > div.col-xs-6 > a > img').get().map((rest) => {
+        	img.push($(rest).attr('src'))
+         })
+     let result = []
+     for (let i = 0; i < url.length; i++) {
+          result.push({
+               	url: url[i],
+               	title: title[i],
+               	img: img[i]
+          })
+     }
+     res.send({
+     creator:  `${creator}`,
+     status: true,
+     result: result
+     })
+})
+})
 
 router.get('/short/tiny', async (req, res, next) => {
     var apikeyInput = req.query.apikey,
         url = req.query.url
 
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
      if (!url) return res.json(loghandler.noturl)
 
      request(`https://tinyurl.com/api-create.php?url=${url}`, function (error, response, body) {
@@ -656,7 +453,7 @@ router.get('/base', async (req, res, next) => {
 		decode = req.query.decode,
 		apikeyInput = req.query.apikey;
 		if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+		if (apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 		if (!type) return res.json({status: false, creator, code: 404, message: 'masukan parameter type, type yang tersedia : base64 , base32'})
 		if (type == 'base64' && encode){
 				Base("b64enc", encode)
@@ -705,98 +502,11 @@ router.get('/base', async (req, res, next) => {
 			}
 })
 
-router.get('/textmaker/iwi', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'kue-njir' && theme != 'gak-tau-anjay') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == 'kue-njir') {
-            try {
-            request.post({
-                url: "https://en.ephoto360.com/write-name-on-pubg-birthday-cake-images-522.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://en.ephoto360.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                })
-                } catch (e) {
-                	console.log(e);
-                res.json(loghandler.error)
-                }
-        } else if (theme == 'gak-tau-anjay') {
-            request.post({
-                url: "https://en.ephoto360.com/create-light-effects-green-neon-online-429.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://en.ephoto360.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                }) 
-        } else {
-            res.json(loghandler.error)
-        }
-})
-
 router.get('/nulis', async (req, res, next) => {
 	var text = req.query.text,
 		 apikeyInput = req.query.apikey;
 	if(!apikeyInput) return res.json(loghandler.notparam)
-     if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+     if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 	 if(!text) return res.json(loghandler.nottext)
 		Nulis(text)
 		 .then(hasil => {
@@ -822,7 +532,6 @@ router.get('/nulis', async (req, res, next) => {
 		   })
 })
 
-
 router.get('/textmaker', async (req, res, next) => {
         var theme = req.query.theme,
              text = req.query.text,
@@ -831,7 +540,7 @@ router.get('/textmaker', async (req, res, next) => {
              apikeyInput = req.query.apikey;
         
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'LM0z') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if (!theme) return res.json(loghandler.nottheme)
         if (theme != 'glitch' && theme != 'google-suggestion') return res.json(loghandler.notheme)
         if (!text) return res.json(loghandler.nottext)
@@ -913,7 +622,6 @@ router.get('/textmaker', async (req, res, next) => {
         }
 })
 
-
 router.get('/textmaker/game', async (req, res, next) => {
         var theme = req.query.theme,
              text = req.query.text,
@@ -922,7 +630,7 @@ router.get('/textmaker/game', async (req, res, next) => {
              apikeyInput = req.query.apikey;
         
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if (!theme) return res.json(loghandler.nottheme)
         if (theme != 'pubg' && theme != 'battlefield') return res.json(loghandler.notheme)
         if (!text) return res.json(loghandler.nottext)
@@ -1011,7 +719,7 @@ router.get('/textmaker/senja', async (req, res, next) => {
              apikeyInput = req.query.apikey;
         
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if (!theme) return res.json(loghandler.nottheme)
         if (theme != 'coffee-cup' && theme != 'coffee-cup2') return res.json(loghandler.notheme)
         if (!text) return res.json(loghandler.nottext)
@@ -1090,186 +798,12 @@ router.get('/textmaker/senja', async (req, res, next) => {
         }
 })
 
-router.get('/textmaker/yamaker', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'metal-epek' && theme != 'scary-njir') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == 'metal-epek') {
-            try {
-            request.post({
-                url: "https://photooxy.com/logo-and-text-effects/illuminated-metallic-effect-177.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                })
-                } catch (e) {
-                	console.log(e);
-                res.json(loghandler.error)
-                }
-        } else if (theme == 'scary-njir') {
-            request.post({
-                url: "https://photooxy.com/logo-and-text-effects/text-on-scary-cemetery-gate-172.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                }) 
-        } else {
-            res.json(loghandler.error)
-        }
-})
-
-router.get('/textmaker/lmo', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'grapiti' && theme != 'bintang') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == 'grapiti') {
-            try {
-            request.post({
-                url: "https://photooxy.com/banner-cover/graffiti-text-cover-222.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                })
-                } catch (e) {
-                	console.log(e);
-                res.json(loghandler.error)
-                }
-        } else if (theme == 'bintang') {
-            request.post({
-                url: "https://photooxy.com/logo-and-text-effects/write-stars-text-on-the-night-sky-200.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                }) 
-        } else {
-            res.json(loghandler.error)
-        }
-})
-
 router.get('/kisahnabi', async (req, res, next) => {
 	var nabi = req.query.nabi,
 		apikeyInput = req.query.apikey;
 
 		if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+		if (apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 		Searchnabi(nabi)
 		.then(result => {
 			res.json({
@@ -1287,7 +821,7 @@ router.get('/infogempa', async (req, res, next) => {
 	        var apikeyInput = req.query.apikey
 
 		if (!apikeyInput) return res.json(loghandler.notparam)
-		if (apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+		if (apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 		Gempa()
 		.then(result => {
 			res.json({
@@ -1307,7 +841,7 @@ router.get('/hadits', async (req, res, next) => {
             nomor = req.query.nomor
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
     if (!kitab) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kitab"})
     if (!nomor) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nomor"})
 
@@ -1331,7 +865,7 @@ router.get('/quran', async (req, res, next) => {
             ayat = req.query.ayat
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
     if (!surah) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter surah"})
     if (!ayat) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter ayat"})
 
@@ -1354,7 +888,7 @@ router.get('/fbdown', async (req, res, next) => {
             url = req.query.url
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
     if (!url) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter url"})
 
        fetch(encodeURI(`https://fb-api-zhirrr.vercel.app/?url=${url}`))
@@ -1379,7 +913,7 @@ router.get('/textmaker/metallic', async (req, res, next) => {
              apikeyInput = req.query.apikey;
         
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if (!theme) return res.json(loghandler.nottheme)
         if (theme != 'neon' && theme != 'glow') return res.json(loghandler.notheme)
         if (!text) return res.json(loghandler.nottext)
@@ -1466,7 +1000,7 @@ router.get('/textmaker/alam', async (req, res, next) => {
              apikeyInput = req.query.apikey;
         
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if (!theme) return res.json(loghandler.nottheme)
         if (theme != 'summer' && theme != 'flower') return res.json(loghandler.notheme)
         if (!text) return res.json(loghandler.nottext)
@@ -1549,7 +1083,7 @@ router.get('/muslim/tahlil', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/dataTahlil.json`))
         .then(response => response.json())
@@ -1569,7 +1103,7 @@ router.get('/muslim/wirid', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/dataWirid.json`))
         .then(response => response.json())
@@ -1589,7 +1123,7 @@ router.get('/muslim/ayatkursi', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/dataAyatKursi.json`))
         .then(response => response.json())
@@ -1609,7 +1143,7 @@ router.get('/muslim/doaharian', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/dataDoaHarian.json`))
         .then(response => response.json())
@@ -1629,7 +1163,7 @@ router.get('/muslim/bacaanshalat', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/dataBacaanShalat.json`))
         .then(response => response.json())
@@ -1649,7 +1183,7 @@ router.get('/muslim/niatshalat', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/dataNiatShalat.json`))
         .then(response => response.json())
@@ -1669,7 +1203,7 @@ router.get('/muslim/kisahnabi', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/dataKisahNabi.json`))
         .then(response => response.json())
@@ -1689,7 +1223,7 @@ router.get('/muslim/asmaulhusna', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/dataAsmaulHusna.json`))
         .then(response => response.json())
@@ -1709,7 +1243,7 @@ router.get('/muslim/niatshubuh', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/NiatShubuh.json`))
         .then(response => response.json())
@@ -1729,7 +1263,7 @@ router.get('/muslim/niatdzuhur', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/NiatDzuhur.json`))
         .then(response => response.json())
@@ -1749,7 +1283,7 @@ router.get('/muslim/niatmaghrib', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/NiatMaghrib.json`))
         .then(response => response.json())
@@ -1765,363 +1299,11 @@ router.get('/muslim/niatmaghrib', async (req, res, next) => {
 })
 
 
-router.get('/textmaker/noti', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'metal-wolf' && theme != 'daun-kaki') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == 'metal-wolf') {
-            try {
-            request.post({
-                url: "https://photooxy.com/logo-and-text-effects/create-a-wolf-metal-text-effect-365.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                })
-                } catch (e) {
-                	console.log(e);
-                res.json(loghandler.error)
-                }
-        } else if (theme == 'daun-kaki') {
-            request.post({
-                url: "https://photooxy.com/logo-and-text-effects/quotes-under-fall-leaves-347.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                }) 
-        } else {
-            res.json(loghandler.error)
-        }
-})
-
-
-router.get('/textmaker/neon9', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != '3dwhite' && theme != 'heri-poter') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == '3dwhite') {
-            try {
-            request.post({
-                url: "https://photooxy.com/logo-and-text-effects/3d-text-effect-under-white-cube-217.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                })
-                } catch (e) {
-                	console.log(e);
-                res.json(loghandler.error)
-                }
-        } else if (theme == 'heri-poter') {
-            request.post({
-                url: "https://photooxy.com/logo-and-text-effects/create-harry-potter-text-on-horror-background-178.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                }) 
-        } else {
-            res.json(loghandler.error)
-        }
-})
-
-
-router.get('/textmaker/texpro', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'neon-1' && theme != 'neon-2') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == 'neon-1') {
-            try {
-            request.post({
-                url: "https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://textpro.me/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                })
-                } catch (e) {
-                	console.log(e);
-                res.json(loghandler.error)
-                }
-        } else if (theme == 'neon-2') {
-            request.post({
-                url: "https://textpro.me/neon-text-effect-online-879.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://textpro.me/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                }) 
-        } else {
-            res.json(loghandler.error)
-        }
-})
-
-
-router.get('/textmaker/neon7', async (req, res, next) => {
-        var theme = req.query.theme,
-             text = req.query.text,
-             text2 = req.query.text2,
-             text3 = req.query.text3,
-             apikeyInput = req.query.apikey;
-        
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-        if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'party' && theme != 'hemker') return res.json(loghandler.notheme)
-        if (!text) return res.json(loghandler.nottext)
-
-        if (theme == 'party') {
-            try {
-            request.post({
-                url: "https://photooxy.com/logo-and-text-effects/create-party-neon-text-effect-161.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                })
-                } catch (e) {
-                	console.log(e);
-                res.json(loghandler.error)
-                }
-        } else if (theme == 'hemker') {
-            request.post({
-                url: "https://photooxy.com/logo-and-text-effects/text-under-web-matrix-effect-185.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                }) 
-        } else {
-            res.json(loghandler.error)
-        }
-})
-
-
 router.get('/muslim/niatisya', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/NiatIsya.json`))
         .then(response => response.json())
@@ -2141,7 +1323,7 @@ router.get('/muslim/niatashar', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/data/NiatAshar.json`))
         .then(response => response.json())
@@ -2161,7 +1343,7 @@ router.get('/wallpaper/cyberspace', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/CyberSpace.json`))
         .then(response => response.json())
@@ -2181,7 +1363,7 @@ router.get('/wallpaper/teknologi', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/Technology.json`))
         .then(response => response.json())
@@ -2201,7 +1383,7 @@ router.get('/wallpaper/muslim', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/Islamic.json`))
         .then(response => response.json())
@@ -2216,32 +1398,12 @@ router.get('/wallpaper/muslim', async (req, res, next) => {
 })
 })
 
-router.get('/anime/husbu', async (req, res, next) => {
-        var apikeyInput = req.query.apikey
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-       fetch(encodeURI(`https://rawcdn.githack.com/L-M0z/Api-raw-v/3aa286a01c8086545554096bf855e2b27b177ae5/husbu.json`))
-        .then(response => response.json())
-        .then(data => {
-        ni = JSON.parse(JSON.stringify(data));
-        nime =  n[Math.floor(Math.random() * ni.length)];
-        var result = nime;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
-})
-})
-
 
 router.get('/wallpaper/programming', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/Programming.json`))
         .then(response => response.json())
@@ -2261,7 +1423,7 @@ router.get('/wallpaper/pegunungan', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/My-SQL-Results/main/Mountain.json`))
         .then(response => response.json())
@@ -2277,34 +1439,12 @@ router.get('/wallpaper/pegunungan', async (req, res, next) => {
 })
 
 
-router.get('/anime/loli', async (req, res, next) => {
-        var apikeyInput = req.query.apikey
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-       fetch(encodeURI(`https://rawcdn.githack.com/L-M0z/Api-raw-v/d3f7c5223fb402f1b7f7d9a53de4346cb591992d/loli.json`))
-        .then(response => response.json())
-        .then(data => {
-        ni = JSON.parse(JSON.stringify(data));
-        nim =  n[Math.floor(Math.random() * ni.length)];
-        var result = nim;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
-})
-})
-
-
-
 router.get('/wikipedia', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             search = req.query.search
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
 
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/wiki?keyword=${search}`))
@@ -2320,12 +1460,11 @@ router.get('/wikipedia', async (req, res, next) => {
 })
 })
 
-
 router.get('/randomquote/muslim', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/quote?type=agamis`))
         .then(response => response.json())
@@ -2346,7 +1485,7 @@ router.get('/drakorasia', async (req, res, next) => {
             search = req.query.search
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
 
        fetch(encodeURI(`http://docs-api-zahirrr.herokuapp.com/api/drakorasia?search=${search}`))
@@ -2368,7 +1507,7 @@ router.get('/jadwalshalat', async (req, res, next) => {
             kota = req.query.kota
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if(!kota) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kota"})
 
        fetch(encodeURI(`https://raw.githubusercontent.com/Zhirrr/Zhirrr-Database/main/adzan/${kota}/2021/03.json`))
@@ -2390,7 +1529,7 @@ router.get('/fakedata', async (req, res, next) => {
             country = req.query.country
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if(!country) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter country"})
 
        fetch(encodeURI(`https://fakename-api-zhirrr.vercel.app/api/fakename?country=${country}`))
@@ -2412,7 +1551,7 @@ router.get('/hilih', async (req, res, next) => {
             kata = req.query.kata
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if(!kata) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kata"})
 
        fetch(encodeURI(`https://hilih-api-zhirrr.vercel.app/api/hilih?kata=${kata}`))
@@ -2434,7 +1573,7 @@ router.get('/liriklagu', async (req, res, next) => {
             lagu = req.query.lagu
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if(!lagu) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kata"})
 
        fetch(encodeURI(`https://python-api-zhirrr.herokuapp.com/api/lirik?search=${lagu}`))
@@ -2456,7 +1595,7 @@ router.get('/chordlagu', async (req, res, next) => {
             lagu = req.query.lagu
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if(!lagu) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kata"})
 
        fetch(encodeURI(`https://python-api-zhirrr.herokuapp.com/api/chord?q=${lagu}`))
@@ -2477,7 +1616,7 @@ router.get('/random/asmaulhusna', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://python-api-zhirrr.herokuapp.com/api/random/asmaulhusna`))
         .then(response => response.json())
@@ -2498,7 +1637,7 @@ router.get('/kbbi', async (req, res, next) => {
             kata = req.query.kata
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
         if(!kata) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kata"})
 
        fetch(encodeURI(`https://kbbi-api-zhirrr.vercel.app/api/kbbi?text=${kata}`))
@@ -2519,7 +1658,7 @@ router.get('/covidindo', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://covid19-api-zhirrr.vercel.app/api/covid-indonesia`))
         .then(response => response.json())
@@ -2539,7 +1678,7 @@ router.get('/covidworld', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://covid19-api-zhirrr.vercel.app/api/world`))
         .then(response => response.json())
@@ -2560,7 +1699,7 @@ router.get('/kodepos', async (req, res, next) => {
 	    kota = req.query.kota
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 	if(!kota) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kota"})
 
        fetch(encodeURI(`https://kodepos-api-zhirrr.vercel.app/?q=${kota}`))
@@ -2582,7 +1721,7 @@ router.get('/cuaca', async (req, res, next) => {
 	    kabupaten = req.query.kabupaten
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 	if(!kabupaten) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kabupaten"})
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/cuaca?kabupaten=${kabupaten}`))
         .then(response => response.json())
@@ -2602,7 +1741,7 @@ router.get('/random/meme', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/meme`))
         .then(response => response.json())
@@ -2622,7 +1761,7 @@ router.get('/quotes/kanye', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/quote?type=kanye`))
         .then(response => response.json())
@@ -2643,7 +1782,7 @@ router.get('/translate', async (req, res, next) => {
 	    kata = req.query.kata
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 	if(!kata) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kata"})
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/translate?text=${kata}`))
         .then(response => response.json())
@@ -2664,7 +1803,7 @@ router.get('/anime/kusonime', async (req, res, next) => {
 	    search = req.query.search
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/kusonime?search=${search}`))
         .then(response => response.json())
@@ -2684,7 +1823,7 @@ router.get('/gabut', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/bosan`))
         .then(response => response.json())
@@ -2705,7 +1844,7 @@ router.get('/manga', async (req, res, next) => {
 	    search = req.query.search
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 	if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/manga?keyword=${search}`))
         .then(response => response.json())
@@ -2725,31 +1864,9 @@ router.get('/random/wallpaper', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/random/wallpaper?genre=acak`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
-})
-})
-
-
-router.get('/genshin', async (req, res, next) => {
-        var apikeyInput = req.query.apikey,
-            search = req.query.search
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
-        if(!search) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter search"})
-
-       fetch(encodeURI(`https://rawcdn.githack.com/L-M0z/Api-raw-v/0bfb230d51759cd3df1db9a107c8493eb4d1cf9c/Genshinimpact/${search}.json`))
         .then(response => response.json())
         .then(data => {
         var result = data;
@@ -2767,7 +1884,7 @@ router.get('/kuis/caklontong', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/quote?type=caklontong`))
         .then(response => response.json())
@@ -2787,7 +1904,7 @@ router.get('/kuis/tebakgambar', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpin') return res.json(loghandler.invalidKey)
+	if(apikeyInput != 'alpingans') return res.json(loghandler.invalidKey)
 
        fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/quote?type=tebakgambar`))
         .then(response => response.json())
